@@ -9,7 +9,7 @@
        <img src="{{ asset('img/bd.jpg') }}" alt="" width="300"><br>
           {{$product->name}}<br>
           ${{$product->price}}<br>
-
+          <a href="{{route('cart.add', $product->id)}}">Add To Cart</a><br>
        @endforeach
 
 
