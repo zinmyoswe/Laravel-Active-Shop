@@ -20,9 +20,16 @@
 
   <tr>
     <td>{{$item->name}}</td>
-    <td>${{$item->price}}</td>
     <td>
-    <input type="number" value="{{$item-> quantity}}">
+    <!-- ${{$item->price}} -->
+    $ {{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}
+    </td>
+    <td>
+    <form action="{{route('cart.update',$item->id)}}">
+        <input type="number" name="quantity" value="{{$item-> quantity}}">
+        <input type="submit" value="save">
+    </form>
+
     </td>
     <td>
         <a href="{{ route('cart.destroy', $item->id)}}">Delete</a>
@@ -33,6 +40,11 @@
 
   </tbody>
 </table>
+
+Total Price::${{\Cart::session(auth()->id())->getTotal()}}
+<br>
+
+<a href="" class="btn btn-primary">Checkout</a>
 
 </div>
 @endsection

@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -42,7 +43,11 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
+                                <a class="nav-link" href="{{ route('cart.index') }}">Cart
+                                <span class="badge badge-pill badge-dark">
+                                {{Cart::session(auth()->id())->getContent()->count()}}
+                                </span>
+                                </a>
                             </li>
                         @guest
                             <li class="nav-item">
